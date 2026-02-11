@@ -67,12 +67,12 @@ if (hero && window.matchMedia('(prefers-reduced-motion: no-preference)').matches
     const noiseCanvas = document.createElement('canvas');
     const nctx = noiseCanvas.getContext('2d');
     const palette = [
-      [10, 12, 14],
-      [28, 20, 30],
-      [80, 40, 60],
-      [150, 80, 70],
-      [70, 120, 160],
-      [200, 130, 90],
+      [24, 26, 30],
+      [60, 40, 70],
+      [120, 60, 90],
+      [200, 90, 90],
+      [90, 160, 210],
+      [240, 160, 120],
     ];
 
     let width = 0;
@@ -135,10 +135,10 @@ if (hero && window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 
     const draw = (time) => {
       if (stopAnimation) return;
-      const t = time * 0.00008;
+      const t = time * 0.00012;
       const image = nctx.createImageData(noiseW, noiseH);
       const data = image.data;
-      const freq = 1.6;
+      const freq = 1.8;
       const flowX = Math.cos(t * 2.1) * 0.8;
       const flowY = Math.sin(t * 1.7) * 0.8;
 
@@ -163,8 +163,10 @@ if (hero && window.matchMedia('(prefers-reduced-motion: no-preference)').matches
       nctx.putImageData(image, 0, 0);
       ctx.clearRect(0, 0, width, height);
       ctx.globalCompositeOperation = 'screen';
+      ctx.globalAlpha = 0.9;
       ctx.drawImage(noiseCanvas, 0, 0, width, height);
       ctx.globalCompositeOperation = 'source-over';
+      ctx.globalAlpha = 1;
       frame += 1;
       requestAnimationFrame(draw);
     };
