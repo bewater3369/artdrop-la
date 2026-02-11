@@ -121,10 +121,25 @@ a {
     linear-gradient(120deg, rgba(40, 50, 80, 0.15), rgba(160, 90, 70, 0.18), rgba(40, 50, 80, 0.15));
   background-size: 160% 160%;
   background-position: 0% 0%;
-  filter: blur(40px) saturate(1.15);
+  filter: blur(40px) saturate(1.25);
   mix-blend-mode: screen;
-  opacity: 0.55;
-  animation: flow 16s ease-in-out infinite;
+  opacity: 0.6;
+  animation: flow 12s ease-in-out infinite, hue-flow 18s linear infinite;
+  z-index: 1;
+}
+
+.hero-waves {
+  position: absolute;
+  inset: -30% -20% -20% -20%;
+  background-image:
+    repeating-linear-gradient(120deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 12%, transparent 24%),
+    repeating-linear-gradient(240deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 10%, transparent 22%);
+  background-size: 220% 220%;
+  background-position: 0% 0%;
+  opacity: 0.28;
+  filter: blur(18px);
+  mix-blend-mode: screen;
+  animation: waves 10s linear infinite;
   z-index: 1;
 }
 
@@ -179,15 +194,42 @@ a {
 @keyframes flow {
   0% {
     background-position: 0% 0%;
-    transform: translate3d(-2%, -1%, 0) scale(1);
+    transform: translate3d(-3%, -2%, 0) scale(1);
   }
   50% {
     background-position: 80% 30%;
-    transform: translate3d(2%, 2%, 0) scale(1.05);
+    transform: translate3d(3%, 3%, 0) scale(1.06);
   }
   100% {
     background-position: 10% 80%;
-    transform: translate3d(-1%, 1%, 0) scale(1.02);
+    transform: translate3d(-2%, 2%, 0) scale(1.04);
+  }
+}
+
+@keyframes hue-flow {
+  0% {
+    filter: blur(40px) saturate(1.2) hue-rotate(0deg);
+  }
+  50% {
+    filter: blur(44px) saturate(1.35) hue-rotate(12deg);
+  }
+  100% {
+    filter: blur(40px) saturate(1.2) hue-rotate(0deg);
+  }
+}
+
+@keyframes waves {
+  0% {
+    background-position: 0% 0%;
+    transform: translate3d(-2%, -1%, 0);
+  }
+  50% {
+    background-position: 120% 40%;
+    transform: translate3d(3%, 2%, 0);
+  }
+  100% {
+    background-position: 10% 120%;
+    transform: translate3d(-1%, 1%, 0);
   }
 }
 
@@ -777,7 +819,8 @@ a {
 
   .hero-aurora,
   .hero-aurora::before,
-  .hero-flow {
+  .hero-flow,
+  .hero-waves {
     animation: none !important;
   }
 }
