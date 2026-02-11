@@ -123,8 +123,8 @@ a {
   background-position: 0% 0%;
   filter: blur(40px) saturate(1.25);
   mix-blend-mode: screen;
-  opacity: 0.25;
-  animation: flow 12s ease-in-out infinite, hue-flow 18s linear infinite;
+  opacity: 0.35;
+  animation: flow 10s ease-in-out infinite, hue-flow 14s linear infinite;
   z-index: 1;
 }
 
@@ -139,8 +139,36 @@ a {
   opacity: 0.28;
   filter: blur(18px);
   mix-blend-mode: screen;
-  animation: waves 10s linear infinite;
+  animation: waves 6s linear infinite;
   z-index: 1;
+}
+
+.hero-vortex {
+  position: absolute;
+  inset: -35% -15% -15% -15%;
+  background: conic-gradient(
+    from 120deg,
+    rgba(255, 80, 120, 0.15),
+    rgba(80, 160, 255, 0.18),
+    rgba(255, 210, 120, 0.16),
+    rgba(120, 90, 255, 0.18),
+    rgba(255, 80, 120, 0.15)
+  );
+  filter: blur(60px) saturate(1.2);
+  mix-blend-mode: screen;
+  opacity: 0.35;
+  animation: vortex 18s linear infinite;
+  z-index: 1;
+}
+
+.hero-sweep {
+  position: absolute;
+  inset: -40% -20%;
+  background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.12) 45%, transparent 60%);
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  animation: sweep 7s ease-in-out infinite;
+  z-index: 2;
 }
 
 .hero-canvas {
@@ -148,9 +176,9 @@ a {
   inset: -12% -6%;
   width: 112%;
   height: 112%;
-  opacity: 0.95;
+  opacity: 1;
   mix-blend-mode: screen;
-  filter: saturate(1.25) contrast(1.1) blur(6px);
+  filter: saturate(1.35) contrast(1.2) blur(4px);
   z-index: 1;
   pointer-events: none;
   animation: canvas-drift 10s ease-in-out infinite;
@@ -224,7 +252,7 @@ a {
     filter: blur(40px) saturate(1.2) hue-rotate(0deg);
   }
   50% {
-    filter: blur(44px) saturate(1.35) hue-rotate(12deg);
+    filter: blur(44px) saturate(1.45) hue-rotate(18deg);
   }
   100% {
     filter: blur(40px) saturate(1.2) hue-rotate(0deg);
@@ -243,6 +271,30 @@ a {
   100% {
     background-position: 10% 120%;
     transform: translate3d(-1%, 1%, 0);
+  }
+}
+
+@keyframes vortex {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes sweep {
+  0% {
+    transform: translate3d(-20%, -10%, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(20%, 10%, 0) rotate(6deg);
+  }
+  100% {
+    transform: translate3d(-20%, -10%, 0) rotate(0deg);
   }
 }
 
@@ -843,7 +895,9 @@ a {
   .hero-aurora::before,
   .hero-flow,
   .hero-waves,
-  .hero-canvas {
+  .hero-canvas,
+  .hero-vortex,
+  .hero-sweep {
     animation: none !important;
   }
 }
