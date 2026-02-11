@@ -57,6 +57,8 @@ a {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   font-size: 0.72rem;
+  color: #f6f2ea;
+  mix-blend-mode: difference;
 }
 
 .brand {
@@ -79,7 +81,7 @@ a {
   bottom: -6px;
   width: 0;
   height: 1px;
-  background: var(--ink);
+  background: currentColor;
   transition: width 0.3s ease;
 }
 
@@ -93,23 +95,27 @@ a {
   padding: 180px 6vw 140px;
   overflow: hidden;
   z-index: 2;
+  color: #f6f2ea;
+  background: #0b0b0b;
+  isolation: isolate;
 }
 
 .hero-backdrop {
   position: absolute;
   inset: -20% -10% -10% -10%;
-  background: radial-gradient(500px 500px at 15% 20%, rgba(194, 124, 82, 0.35), transparent 70%),
-    radial-gradient(700px 700px at 85% 5%, rgba(181, 160, 138, 0.35), transparent 65%),
-    radial-gradient(600px 600px at 65% 80%, rgba(210, 192, 165, 0.3), transparent 70%);
+  background: radial-gradient(520px 520px at 18% 20%, rgba(194, 124, 82, 0.35), transparent 72%),
+    radial-gradient(720px 720px at 88% 8%, rgba(64, 76, 92, 0.35), transparent 65%),
+    radial-gradient(560px 560px at 68% 82%, rgba(105, 94, 82, 0.35), transparent 70%);
   animation: drift 18s ease-in-out infinite;
   z-index: 1;
+  opacity: 0.8;
 }
 
 .hero-spotlight {
   position: absolute;
   inset: 0;
-  background: radial-gradient(420px 420px at var(--spot-x, 65%) var(--spot-y, 35%), rgba(255, 255, 255, 0.7), transparent 70%);
-  opacity: 0.85;
+  background: radial-gradient(420px 420px at var(--spot-x, 65%) var(--spot-y, 35%), rgba(255, 255, 255, 0.5), transparent 72%);
+  opacity: 0.65;
   mix-blend-mode: soft-light;
   pointer-events: none;
   transition: opacity 0.4s ease;
@@ -145,7 +151,7 @@ a {
   text-transform: uppercase;
   letter-spacing: 0.3em;
   font-size: 0.7rem;
-  color: var(--muted);
+  color: #c7bfb5;
   margin-bottom: 24px;
   opacity: 0;
   transform: translateY(16px);
@@ -176,7 +182,7 @@ a {
 
 .lede {
   font-size: clamp(1.05rem, 1.8vw, 1.45rem);
-  color: var(--muted);
+  color: #cfc7bd;
   max-width: 520px;
   margin-bottom: 32px;
   opacity: 0;
@@ -207,9 +213,9 @@ a {
 .button {
   padding: 12px 28px;
   border-radius: 12px;
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: #f6f2ea;
+  border: 1px solid #f6f2ea;
+  background: #f6f2ea;
+  color: #0b0b0b;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   font-size: 0.72rem;
@@ -223,7 +229,7 @@ a {
 
 .link {
   font-size: 0.95rem;
-  color: var(--muted);
+  color: #cfc7bd;
   text-decoration: underline;
   text-underline-offset: 6px;
 }
@@ -242,7 +248,7 @@ a {
   border-radius: 26px;
   overflow: hidden;
   border: 1px solid rgba(20, 20, 20, 0.08);
-  background: #fff;
+  background: #0f0f0f;
   box-shadow: var(--shadow);
   opacity: 0;
   clip-path: inset(14% 14% 14% 14% round 30px);
@@ -252,25 +258,52 @@ a {
   transition: transform 0.6s ease;
 }
 
+.tile-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 .tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(1.06) contrast(1.05);
-  transform: scale(1.06);
-  transition: transform 0.6s ease;
+}
+
+.img-gray {
+  filter: grayscale(1) contrast(1.15) brightness(0.92);
+}
+
+.img-color {
+  filter: saturate(1.2) contrast(1.05);
+  clip-path: circle(38% at 70% 35%);
+  animation: color-drift 10s ease-in-out infinite;
+}
+
+.img-color.color-b {
+  clip-path: circle(34% at 50% 70%);
+  animation: color-drift-b 12s ease-in-out infinite;
+}
+
+.img-color.color-c {
+  clip-path: circle(32% at 40% 40%);
+  animation: color-drift-c 11s ease-in-out infinite;
 }
 
 .tile figcaption {
   position: absolute;
   left: 16px;
   bottom: 16px;
-  background: rgba(246, 242, 234, 0.88);
+  background: rgba(10, 10, 10, 0.72);
   padding: 6px 12px;
   border-radius: 999px;
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: var(--ink);
+  color: #f6f2ea;
 }
 
 .tile:hover {
@@ -319,6 +352,33 @@ a {
   }
 }
 
+@keyframes color-drift {
+  0%, 100% {
+    clip-path: circle(38% at 70% 35%);
+  }
+  50% {
+    clip-path: circle(40% at 35% 60%);
+  }
+}
+
+@keyframes color-drift-b {
+  0%, 100% {
+    clip-path: circle(34% at 50% 70%);
+  }
+  50% {
+    clip-path: circle(36% at 68% 38%);
+  }
+}
+
+@keyframes color-drift-c {
+  0%, 100% {
+    clip-path: circle(32% at 40% 40%);
+  }
+  50% {
+    clip-path: circle(34% at 70% 65%);
+  }
+}
+
 .hero-marquee {
   position: absolute;
   bottom: 28px;
@@ -328,7 +388,7 @@ a {
   text-transform: uppercase;
   font-size: 0.68rem;
   letter-spacing: 0.45em;
-  color: var(--accent-2);
+  color: rgba(246, 242, 234, 0.5);
   z-index: 2;
 }
 
@@ -565,12 +625,18 @@ a {
     position: relative;
     width: 100%;
     height: auto;
+    aspect-ratio: 4 / 5;
     transform: none;
     clip-path: none;
   }
 
+  .tile-media {
+    height: 100%;
+  }
+
   .tile img {
-    height: auto;
+    position: absolute;
+    height: 100%;
   }
 
   .tile-a,
@@ -625,5 +691,9 @@ a {
 
   .hero-spotlight {
     opacity: 0;
+  }
+
+  .img-color {
+    animation: none !important;
   }
 }
